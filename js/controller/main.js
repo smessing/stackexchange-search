@@ -15,7 +15,7 @@ function main() {
  * @param {string} dataUrl The url to request.
  */
 function getData(dataUrl) {
-  log('Sending simple request for ['+ dataUrl + ']');
+  log('Sending simple request for [' + dataUrl + ']');
   goog.net.XhrIo.send(dataUrl, function(e) {
     var xhr = e.target;
     var obj = xhr.getResponseJson();
