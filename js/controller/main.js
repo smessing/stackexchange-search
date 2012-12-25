@@ -36,6 +36,7 @@ controller.search = function() {
 /**
  * Build a search url.
  * @param {string} searchText The text to use in the search.
+ * @return {string} The query url for the StackExchange API.
  */
 controller.buildSearchUrl = function(searchText) {
   return controller.SEARCH_URL + searchText + controller.URL_END;
