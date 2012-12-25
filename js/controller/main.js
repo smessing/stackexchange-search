@@ -31,7 +31,7 @@ controller.search = function() {
   var searchBar = document.getElementById('search-bar');
   searchUrl = controller.buildSearchUrl(searchBar.value);
   data = controller.getData(searchUrl);
-}
+};
 
 /**
  * Build a search url.
@@ -39,7 +39,7 @@ controller.search = function() {
  */
 controller.buildSearchUrl = function(searchText) {
   return controller.SEARCH_URL + searchText + controller.URL_END;
-}
+};
 
 /**
  * Retrieve JSON data using XhrIo's static send() method.
@@ -54,9 +54,13 @@ controller.getData = function(dataUrl) {
     controller.log('Received Json data object with title property of "' +
         obj['title'] + '"');
   });
-}
+};
 
+/**
+ * Simple log function, appends text to the end of a page.
+ * @param {string} msg The message to log.
+ */
 controller.log = function(msg) {
   document.getElementById('log').appendChild(document.createTextNode(msg));
   document.getElementById('log').appendChild(document.createElement('br'));
-}
+};
