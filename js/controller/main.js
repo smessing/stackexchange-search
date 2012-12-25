@@ -8,10 +8,21 @@ goog.require('goog.net.XhrIo');
 function main() {
 }
 
+/**
+ * Base url for StackOverflow API.
+ */
 controller.BASE_URL = 'https://api.stackexchange.com/2.1/';
+
+/*
+ * Url to use for searching StackOverflow answers, just append search text.
+ */
 controller.SEARCH_URL =
   controller.BASE_URL + 'search?order=desc&sort=activity&intitle=';
-controller.URL_END = '&site=stackoverflow';
+
+/*
+ * Specifies using the StackOverflow site for API requests.
+ */
+controller.SITE_URL = '&site=stackoverflow';
 
 controller.search = function() {
   var searchBar = document.getElementById('search-bar');
