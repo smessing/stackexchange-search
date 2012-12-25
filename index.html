@@ -13,9 +13,15 @@
 <body onload="main()">
   <h1>StackExchange</h1>
   <div class="center">
+    <div class="search">
+      <input type="text" id="search-bar" onkeypress="controller.search()">
+    </div>
     <div id="previous"></div>
     <div id="current"></div>
     <div id="next"></div>
+  </div>
+  <div class="debug">
+    <div id="log"></div>
   </div>
 </body>
 </html>
