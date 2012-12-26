@@ -69,7 +69,7 @@ view.context.SearchContext.prototype.getSearchInfo = function() {
 
 /**
  * Update the search info based on the last search executed.
- * @param {!Object} The search info object.
+ * @param {!Object} infoObj The search info object.
  */
 view.context.SearchContext.prototype.updateSearchInfo = function(infoObj) {
   // Flush the search info.
