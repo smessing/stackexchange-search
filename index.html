@@ -8,10 +8,10 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/main.css"/>
   <script src="lib/closure/closure/goog/base.js"></script>
-  <script src="js/controller/controller.js"></script>
+  <script src="js/control/controller.js"></script>
   <script src="js/main.js"></script>
   <script language="javascript">
-    window.onload = main;
+    window.onload = main.main;
   </script>
 </head>
 <body>
@@ -19,12 +19,6 @@
     <h1>StackOverflow Search</h1>
   </header>
   <div class="center">
-    <div class="search">
-      <input type="text" id="search-bar" placeholder="Enter text..." onkeyup="main.search()"/>
-    </div>
-    <div id="results">
-      <ul id="results-list"></ul>
-    </div>
   </div>
   <div class="debug">
     <div id="log"></div>
