@@ -10,7 +10,7 @@
   <script src="lib/closure/closure/goog/base.js"></script>
   <script src="js/controller/controller.js"></script>
 </head>
-<body onload="main()">
+<body>
   <header>
     <h1>StackOverflow Search</h1>
   </header>
@@ -18,9 +18,9 @@
     <div class="search">
       <input type="text" id="search-bar" placeholder="Enter text..." onkeyup="controller.search()"/>
     </div>
-    <div id="previous"></div>
-    <div id="current"></div>
-    <div id="next"></div>
+    <div id="results">
+      <ul id="results-list"></ul>
+    </div>
   </div>
   <div class="debug">
     <div id="log"></div>

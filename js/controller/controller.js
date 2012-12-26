@@ -1,12 +1,7 @@
 goog.provide('controller');
+goog.require('goog.dom');
 goog.require('goog.net.XhrIo');
 
-
-/**
- * Entry point into the program.
- */
-function main() {
-}
 
 /**
  * Base url for StackOverflow API.
@@ -48,15 +43,63 @@ controller.buildSearchUrl = function(searchText) {
  * Retrieve JSON data using XhrIo's static send() method.
  *
  * @param {string} dataUrl The url to request.
+ * @this The controller.
  */
 controller.getData = function(dataUrl) {
   controller.log('Sending simple request for [' + dataUrl + ']');
-  goog.net.XhrIo.send(dataUrl, function(e) {
-    var xhr = e.target;
-    var obj = xhr.getResponseJson();
-    controller.log('Received Json data object with title property of "' +
-        obj['title'] + '"');
-  });
+  fn = goog.bind(this.parseAndDisplayResults, this);
+  callback = goog.bind(this.callbackWrapper, this, fn);
+  goog.net.XhrIo.send(dataUrl, callback);
+};
+
+/**
+ * Wrapper to use as a callback for Xhr's.
+ * @param {Function} fn Function to call the parsed JSON obj on.
+ * @param {*} e Callback response event.
+ */
+controller.callbackWrapper = function(fn, e) {
+  console.log('callbackWrapper called fn: ' + fn + ' e: ' + e);
+  var xhr = e.target;
+  var obj = xhr.getResponseJson();
+  fn(obj);
+};
+
+/**
+ * Parses a response object containing StackOverflow questions and displays
+ * the results.
+ * @param {*} obj The JSON object to parse.
+ * @this The controller.
+ */
+controller.parseAndDisplayResults = function(obj) {
+  if (obj.length == 0) {
+    return;
+  }
+  var results = obj['items'];
+  this.clearResults();
+  for (var i in results) {
+    var result = results[i];
+    this.appendResult(result);
+  }
+};
+
+/**
+ * Add a result to the results list.
+ * @param {*} result The result to append.
+ */
+controller.appendResult = function(result) {
+  var title = result['title'];
+  var p = document.createElement('li');
+  goog.dom.append(p, title);
+  var resultsListEl = document.getElementById('results-list');
+  goog.dom.append(resultsListEl, p);
+};
+
+/**
+ * Clear all results from the result list.
+ */
+controller.clearResults = function() {
+  var resultsListEl = document.getElementById('results-list');
+  goog.dom.removeChildren(resultsListEl);
 };
 
 /**
