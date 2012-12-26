@@ -22,8 +22,13 @@ view.context.SearchContext = function(appEl) {
    */
   this.domHelper_ = new goog.dom.DomHelper();
 
-  this.searchEl = this.domHelper_.createDom('div', {'class': 'search'});
-  goog.dom.appendChild(appEl, this.searchEl);
+  /**
+   * Reference to the containing search div.
+   * @type {!Element}
+   * @private
+   */
+  this.searchEl_ = this.domHelper_.createDom('div', {'class': 'search'});
+  goog.dom.appendChild(appEl, this.searchEl_);
 
 };
 goog.inherits(view.context.SearchContext, view.context.Context);
