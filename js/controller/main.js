@@ -30,6 +30,7 @@ controller.SITE_URL = '&site=stackoverflow';
 controller.search = function() {
   var searchBar = document.getElementById('search-bar');
   searchUrl = controller.buildSearchUrl(searchBar.value);
+  console.log('searchUrl: ' + searchUrl);
   data = controller.getData(searchUrl);
 };
 
@@ -39,7 +40,8 @@ controller.search = function() {
  * @return {string} The query url for the StackExchange API.
  */
 controller.buildSearchUrl = function(searchText) {
-  return controller.SEARCH_URL + searchText + controller.URL_END;
+  console.log('searchText: ' + searchText);
+  return controller.SEARCH_URL + searchText + controller.SITE_URL;
 };
 
 /**
@@ -48,7 +50,7 @@ controller.buildSearchUrl = function(searchText) {
  * @param {string} dataUrl The url to request.
  */
 controller.getData = function(dataUrl) {
-  log('Sending simple request for [' + dataUrl + ']');
+  controller.log('Sending simple request for [' + dataUrl + ']');
   goog.net.XhrIo.send(dataUrl, function(e) {
     var xhr = e.target;
     var obj = xhr.getResponseJson();

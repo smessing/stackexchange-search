@@ -6,7 +6,7 @@
   <meta name="description" context="StackExchange Search">
   <meta name="keywords" context="HTML,CSS,JavaScript">
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="src/css/main.css"/>
+  <link rel="stylesheet" type="text/css" href="css/main.css"/>
   <script src="lib/closure/closure/goog/base.js"></script>
   <script src="js/controller/main.js"></script>
 </head>
@@ -14,7 +14,7 @@
   <h1>StackExchange</h1>
   <div class="center">
     <div class="search">
-      <input type="text" id="search-bar" onkeypress="controller.search()"/>
+      <input type="text" id="search-bar" onkeyup="controller.search()"/>
     </div>
     <div id="previous"></div>
     <div id="current"></div>
