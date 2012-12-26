@@ -74,5 +74,15 @@ view.context.SearchContext.prototype.getSearchInfo = function() {
 view.context.SearchContext.prototype.updateSearchInfo = function(infoObj) {
   // Flush the search info.
   goog.dom.removeChildren(this.searchInfo_);
-  var searchText = infoObj['text'];
+  var searchInfoList =
+      this.domHelper_.createDom('ul', {'id': 'search-info-list'});
+  goog.dom.appendChild(this.searchInfo_, searchInfoList);
+
+  var searchTextEl =
+    this.domHelper_.createDom('ul', {'id': 'search-info-text'});
+  goog.dom.appendChild(searchInfoList, searchTextEl);
+
+  var text = 'query: ' + infoObj['text'];
+  var searchText = this.domHelper_.createTextNode(text);
+  goog.dom.appendChild(searchTextEl, searchText);
 };
