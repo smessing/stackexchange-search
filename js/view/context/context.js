@@ -1,3 +1,6 @@
+/**
+ * TODO(sam): JSDoc
+ */
 goog.provide('view.context.Context');
 
 

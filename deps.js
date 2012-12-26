@@ -2,8 +2,8 @@
 goog.addDependency("../../../../deps.js", [], []);
 goog.addDependency("../../../../js/main.js", ['main'], ['control.Controller']);
 goog.addDependency("../../../../js/control/controller.js", ['control.Controller'], ['goog.net.XhrIo', 'view.context.SearchContext']);
-goog.addDependency("../../../../js/view/context/Context.js", ['view.context.Context'], []);
-goog.addDependency("../../../../js/view/context/SearchContext.js", ['view.context.SearchContext'], ['view.context.Context']);
+goog.addDependency("../../../../js/view/context/context.js", ['view.context.Context'], []);
+goog.addDependency("../../../../js/view/context/searchcontext.js", ['view.context.SearchContext'], ['view.context.Context']);
 goog.addDependency("../../alltests.js", [], []);
 goog.addDependency("base.js", [], []);
 goog.addDependency("deps.js", [], []);
