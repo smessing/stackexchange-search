@@ -7,6 +7,5 @@ goog.require('control.Controller');
  * @constructor
  */
 main.main = function() {
-  console.log(control.Controller);
   this.controller = new control.Controller();
 };
