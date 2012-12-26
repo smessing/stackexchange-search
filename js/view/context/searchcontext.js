@@ -37,6 +37,14 @@ view.context.SearchContext = function(appEl) {
    */
   this.searchBar_ = this.domHelper_.createDom('input', {'id': 'search-bar'});
   goog.dom.appendChild(this.searchEl_, this.searchBar_);
+
+  /**
+   * Reference to the search info box.
+   * @type {!Element}
+   * @private
+   */
+  this.searchInfo_ = this.domHelper_.createDom('div', {'id': 'search-info'});
+  goog.dom.appendChild(this.searchEl_, this.searchInfo_);
 };
 goog.inherits(view.context.SearchContext, view.context.Context);
 
@@ -49,3 +57,22 @@ view.context.SearchContext.prototype.getSearchBar = function() {
   return this.searchBar_;
 };
 
+
+/**
+ * Return a reference to the search info element.
+ * @return {!Element} The search info element.
+ */
+view.context.SearchContext.prototype.getSearchInfo = function() {
+  return this.searchInfo_;
+};
+
+
+/**
+ * Update the search info based on the last search executed.
+ * @param {!Object} The search info object.
+ */
+view.context.SearchContext.prototype.updateSearchInfo = function(infoObj) {
+  // Flush the search info.
+  goog.dom.removeChildren(this.searchInfo_);
+  var searchText = infoObj['text'];
+};

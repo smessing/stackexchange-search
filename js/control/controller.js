@@ -16,7 +16,6 @@ control.Controller = function() {
   this.results_ = [];
 
   var appEl = goog.dom.getElement('app');
-  console.log(appEl);
   /**
    * The search-context view.
    * @type {view.context.SearchContext}
@@ -25,7 +24,8 @@ control.Controller = function() {
   this.searchContext_ = new view.context.SearchContext(appEl);
 
   var searchBar = this.searchContext_.getSearchBar();
-  goog.events.listen(searchBar, goog.events.EventType.KEYUP, this.handleSearch);
+  var handler = goog.bind(this.handleSearch, this);
+  goog.events.listen(searchBar, goog.events.EventType.KEYUP, handler);
 };
 
 
@@ -42,4 +42,15 @@ control.Controller.prototype.currentSearchText_ = '';
  * @param {goog.events.Event} e The event.
  */
 control.Controller.prototype.handleSearch = function(e) {
+  // TODO(sam): infoObj should probably have a class of its own...
+  var searchBar = e.target;
+  var searchText = searchBar.value;
+
+  // Protect against redundant searching.
+  if (searchText == this.currentSearchText_) {
+    return;
+  }
+  this.currentSearchText_ = searchText;
+
+  this.searchContext_.updateSearchInfo({'text': this.currentSearchText_});
 };
