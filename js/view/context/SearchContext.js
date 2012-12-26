@@ -3,6 +3,8 @@
  */
 goog.provide('view.context.SearchContext');
 
+goog.require('view.context.Context');
+
 
 /**
  * The search view context.
