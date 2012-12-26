@@ -1,6 +1,7 @@
 goog.provide('control.Controller');
 
 goog.require('goog.net.XhrIo');
+goog.require('view.context.SearchContext');
 
 /**
  * The application controller.
@@ -14,6 +15,12 @@ control.Controller = function() {
    */
   this.results_ = [];
 
+  /**
+   * The search-context view.
+   * @type {view.context.SearchContext}
+   * @private
+   */
+  this.searchContext_ = new view.context.SearchContext();
 };
 
 
