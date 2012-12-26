@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>StackExchange</title>
-  <meta name="author" context="Samuel Messing <samuel.messing+exoplanets@gmail.com">
+  <meta name="author" context="Samuel Messing <samuel.messing+stackexchange@gmail.com">
   <meta name="description" context="StackExchange Search">
   <meta name="keywords" context="HTML,CSS,JavaScript">
   <meta charset="UTF-8">
@@ -11,10 +11,12 @@
   <script src="js/controller/main.js"></script>
 </head>
 <body onload="main()">
-  <h1>StackExchange</h1>
+  <header>
+    <h1>StackOverflow Search</h1>
+  </header>
   <div class="center">
     <div class="search">
-      <input type="text" id="search-bar" onkeyup="controller.search()"/>
+      <input type="text" id="search-bar" placeholder="Enter text..." onkeyup="controller.search()"/>
     </div>
     <div id="previous"></div>
     <div id="current"></div>
