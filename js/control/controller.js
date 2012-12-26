@@ -23,6 +23,9 @@ control.Controller = function() {
    * @private
    */
   this.searchContext_ = new view.context.SearchContext(appEl);
+
+  var searchBar = this.searchContext_.getSearchBar();
+  goog.events.listen(searchBar, goog.events.EventType.KEYUP, this.handleSearch);
 };
 
 
@@ -32,3 +35,11 @@ control.Controller = function() {
  * @private
  */
 control.Controller.prototype.currentSearchText_ = '';
+
+
+/**
+ * Event handler for when user types into the search bar.
+ * @param {goog.events.Event} e The event.
+ */
+control.Controller.prototype.handleSearch = function(e) {
+};

@@ -30,6 +30,22 @@ view.context.SearchContext = function(appEl) {
   this.searchEl_ = this.domHelper_.createDom('div', {'class': 'search'});
   goog.dom.appendChild(appEl, this.searchEl_);
 
+  /**
+   * Reference to the search bar.
+   * @type {!Element}
+   * @private
+   */
+  this.searchBar_ = this.domHelper_.createDom('input', {'id': 'search-bar'});
+  goog.dom.appendChild(this.searchEl_, this.searchBar_);
 };
 goog.inherits(view.context.SearchContext, view.context.Context);
+
+
+/**
+ * Return a reference to the search bar element.
+ * @return {!Element} The search bar element.
+ */
+view.context.SearchContext.prototype.getSearchBar = function() {
+  return this.searchBar_;
+};
 
