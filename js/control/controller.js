@@ -15,12 +15,14 @@ control.Controller = function() {
    */
   this.results_ = [];
 
+  var appEl = goog.dom.getElement('app');
+  console.log(appEl);
   /**
    * The search-context view.
    * @type {view.context.SearchContext}
    * @private
    */
-  this.searchContext_ = new view.context.SearchContext();
+  this.searchContext_ = new view.context.SearchContext(appEl);
 };
 
 
