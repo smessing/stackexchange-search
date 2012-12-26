@@ -9,6 +9,10 @@
   <link rel="stylesheet" type="text/css" href="css/main.css"/>
   <script src="lib/closure/closure/goog/base.js"></script>
   <script src="js/controller/controller.js"></script>
+  <script src="js/main.js"></script>
+  <script language="javascript">
+    window.onload = main;
+  </script>
 </head>
 <body>
   <header>
@@ -16,7 +20,7 @@
   </header>
   <div class="center">
     <div class="search">
-      <input type="text" id="search-bar" placeholder="Enter text..." onkeyup="controller.search()"/>
+      <input type="text" id="search-bar" placeholder="Enter text..." onkeyup="main.search()"/>
     </div>
     <div id="results">
       <ul id="results-list"></ul>

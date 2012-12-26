@@ -1,4 +1,5 @@
-goog.provide('controller');
+goog.provide('Controller');
+
 goog.require('goog.dom');
 goog.require('goog.net.XhrIo');
 
@@ -6,27 +7,40 @@ goog.require('goog.net.XhrIo');
 /**
  * Base url for StackOverflow API.
  */
-controller.BASE_URL = 'https://api.stackexchange.com/2.1/';
+Controller.BASE_URL = 'https://api.stackexchange.com/2.1/';
 
 /**
  * Url to use for searching StackOverflow answers, just append search text.
  */
-controller.SEARCH_URL =
-  controller.BASE_URL + 'search?order=desc&sort=activity&intitle=';
+Controller.SEARCH_URL =
+  Controller.BASE_URL + 'search?order=desc&sort=activity&intitle=';
 
 /**
  * Specifies using the StackOverflow site for API requests.
  */
-controller.SITE_URL = '&site=stackoverflow';
+Controller.SITE_URL = '&site=stackoverflow';
+
+/**
+ * Class for driving the StackOverflow application.
+ * @constructor
+ */
+Controller = function() {
+};
+
+/**
+ * The last text searched for. Used to prevent sending duplicate requests.
+ * @param {string}
+ */
+Controller.prototype.lastSearchText = '';
 
 /**
  * Search StackExchange site based on text in the search bar.
  */
-controller.search = function() {
+Controller.search = function() {
   var searchBar = document.getElementById('search-bar');
-  searchUrl = controller.buildSearchUrl(searchBar.value);
+  searchUrl = Controller.buildSearchUrl(searchBar.value);
   console.log('searchUrl: ' + searchUrl);
-  data = controller.getData(searchUrl);
+  data = Controller.getData(searchUrl);
 };
 
 /**
@@ -34,19 +48,19 @@ controller.search = function() {
  * @param {string} searchText The text to use in the search.
  * @return {string} The query url for the StackExchange API.
  */
-controller.buildSearchUrl = function(searchText) {
+Controller.buildSearchUrl = function(searchText) {
   console.log('searchText: ' + searchText);
-  return controller.SEARCH_URL + searchText + controller.SITE_URL;
+  return Controller.SEARCH_URL + searchText + Controller.SITE_URL;
 };
 
 /**
  * Retrieve JSON data using XhrIo's static send() method.
  *
  * @param {string} dataUrl The url to request.
- * @this The controller.
+ * @this The Controller.
  */
-controller.getData = function(dataUrl) {
-  controller.log('Sending simple request for [' + dataUrl + ']');
+Controller.getData = function(dataUrl) {
+  Controller.log('Sending simple request for [' + dataUrl + ']');
   fn = goog.bind(this.parseAndDisplayResults, this);
   callback = goog.bind(this.callbackWrapper, this, fn);
   goog.net.XhrIo.send(dataUrl, callback);
@@ -57,7 +71,7 @@ controller.getData = function(dataUrl) {
  * @param {Function} fn Function to call the parsed JSON obj on.
  * @param {*} e Callback response event.
  */
-controller.callbackWrapper = function(fn, e) {
+Controller.callbackWrapper = function(fn, e) {
   console.log('callbackWrapper called fn: ' + fn + ' e: ' + e);
   var xhr = e.target;
   var obj = xhr.getResponseJson();
@@ -68,9 +82,9 @@ controller.callbackWrapper = function(fn, e) {
  * Parses a response object containing StackOverflow questions and displays
  * the results.
  * @param {*} obj The JSON object to parse.
- * @this The controller.
+ * @this The Controller.
  */
-controller.parseAndDisplayResults = function(obj) {
+Controller.parseAndDisplayResults = function(obj) {
   if (obj.length == 0) {
     return;
   }
@@ -86,7 +100,7 @@ controller.parseAndDisplayResults = function(obj) {
  * Add a result to the results list.
  * @param {*} result The result to append.
  */
-controller.appendResult = function(result) {
+Controller.appendResult = function(result) {
   var title = result['title'];
   var p = document.createElement('li');
   goog.dom.append(p, title);
@@ -97,7 +111,7 @@ controller.appendResult = function(result) {
 /**
  * Clear all results from the result list.
  */
-controller.clearResults = function() {
+Controller.clearResults = function() {
   var resultsListEl = document.getElementById('results-list');
   goog.dom.removeChildren(resultsListEl);
 };
@@ -106,7 +120,7 @@ controller.clearResults = function() {
  * Simple log function, appends text to the end of a page.
  * @param {string} msg The message to log.
  */
-controller.log = function(msg) {
+Controller.log = function(msg) {
   document.getElementById('log').appendChild(document.createTextNode(msg));
   document.getElementById('log').appendChild(document.createElement('br'));
 };
