@@ -29,7 +29,7 @@ Controller = function() {
 
 /**
  * The last text searched for. Used to prevent sending duplicate requests.
- * @param {string}
+ * @type {string}
  */
 Controller.prototype.lastSearchText = '';
 
