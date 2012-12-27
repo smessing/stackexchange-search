@@ -27,7 +27,8 @@ view.context.SearchContext = function(appEl) {
    * @type {!Element}
    * @private
    */
-  this.searchEl_ = this.domHelper_.createDom('div', {'id': 'search-context'});
+  this.searchEl_ = this.domHelper_.createDom('div', {'class': 'context',
+                                                     'id': 'search-context'});
   goog.dom.appendChild(appEl, this.searchEl_);
 
   /**
