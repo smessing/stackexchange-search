@@ -1,19 +1,28 @@
 {namespace view.context}
 
-{template .searchContext}
+/**
+ * Search context view.
+ */
+{template .searchContextTemplate}
   <div class='context' id='search-context'>
-    {call searchBar /}
-    {call searchInfo /}
+    {call searchBarTemplate /}
+    {call searchInfoTemplate /}
   </div>
 {/template}
 
-{template .searchBar private="true"}
+/**
+ * The search bar.
+ */
+{template .searchBarTemplate private="true"}
   <div id='search-bar'>
     <input id='search-bar-input'>
   </div>
 {/template}
 
-{template .searchInfo private="true"}
+/**
+ * The search info box.
+ */
+{template .searchInfoTemplate private="true"}
   <div id='search-info'>
 
   </div>
