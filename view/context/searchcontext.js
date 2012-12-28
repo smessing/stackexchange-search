@@ -5,7 +5,7 @@ goog.provide('view.context.SearchContext');
 
 goog.require('goog.dom.DomHelper');
 goog.require('view.context.Context');
-goog.require('view.context.templates.SearchContext');
+goog.require('view.context.templates');
 
 
 /**
@@ -32,21 +32,21 @@ view.context.SearchContext = function(appEl) {
                                                      'id': 'search-context'});
   goog.dom.appendChild(appEl, this.searchEl_);
 
+  this.searchEl_.innerHTML = view.context.templates.searchContext();
+
   /**
    * Reference to the search bar.
    * @type {!Element}
    * @private
    */
-  this.searchBar_ = this.domHelper_.createDom('input', {'id': 'search-bar'});
-  goog.dom.appendChild(this.searchEl_, this.searchBar_);
+  this.searchBar_ = this.domHelper_.getElement('search-bar');
 
   /**
    * Reference to the search info box.
    * @type {!Element}
    * @private
    */
-  this.searchInfo_ = this.domHelper_.createDom('div', {'id': 'search-info'});
-  goog.dom.appendChild(this.searchEl_, this.searchInfo_);
+  this.searchInfo_ = this.domHelper_.getElement('search-info');
 };
 goog.inherits(view.context.SearchContext, view.context.Context);
 
