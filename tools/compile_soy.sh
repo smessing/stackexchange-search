@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # add individual soy templates here, do NOT include file extension.
-FILES=('view/context/searchcontexttemplate')
+FILES_NO_EXT=('view/context/templates/searchcontext')
 
-for file in "${FILES[@]}"
+for file in "${FILES_NO_EXT[@]}"
 do
-  java -jar lib/soy/SoyToJsSrcCompiler.jar --shouldGenerateJsdoc --outputPathFormat ${file}.js --srcs ${file}.soy
+  java -jar lib/soy/SoyToJsSrcCompiler.jar \
+    --shouldGenerateJsdoc \
+    --shouldProvideRequireSoyNamespaces \
+    --outputPathFormat build/{INPUT_FILE_NAME_NO_EXT}.soy.js \
+    --srcs ${file}.soy
 done
