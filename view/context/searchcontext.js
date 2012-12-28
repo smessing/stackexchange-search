@@ -5,6 +5,7 @@ goog.provide('view.context.SearchContext');
 
 goog.require('goog.dom.DomHelper');
 goog.require('view.context.Context');
+goog.require('view.context.templates.SearchContext');
 
 
 /**
