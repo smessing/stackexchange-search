@@ -1,3 +1,5 @@
 #!/bin/bash
 
-grep -Rn --exclude-dir lib --exclude tools/show_todos.sh 'TODO(sam)' *
+SEARCH_STRING='TODO('$1')'
+
+grep -Rn --exclude-dir lib --exclude tools/show_todos.sh ${SEARCH_STRING} *
