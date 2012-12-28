@@ -87,7 +87,6 @@ control.Controller.prototype.currentSearchText_ = '';
  * @param {goog.events.Event} e The event.
  */
 control.Controller.prototype.handleSearch = function(e) {
-  // TODO(sam): infoObj should probably have a class of its own...
   var searchBar = e.target;
   var searchText = searchBar.value;
 
@@ -134,6 +133,7 @@ control.Controller.prototype.handleInTitleSearch_ = function(e) {
   var questions = model.Question.buildQuestionsFromRaw(rawQuestions);
   console.log(obj);
 
+  // TODO(sam): infoObj should probably have a class of its own...
   this.searchContext_.updateSearchInfo({'text': this.currentSearchText_,
                                         'numResults': rawQuestions.length});
 
