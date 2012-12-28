@@ -114,7 +114,7 @@ control.Controller.prototype.handleSearch = function(e) {
  * @private
  */
 control.Controller.prototype.handleSearchResults_ = function(type, e) {
-  switch(type) {
+  switch (type) {
     case control.Controller.SEARCH_TYPE.IN_TITLE:
       this.handleInTitleSearch_(e);
   }
