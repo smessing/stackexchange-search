@@ -861,4 +861,3 @@ goog.addDependency("../../../soy/soyutils.js", [], []);
 goog.addDependency("../../../soy/soyutils_usegoog.js", ['soy', 'soy.StringBuilder', 'soy.esc', 'soydata', 'soydata.SanitizedHtml', 'soydata.SanitizedHtmlAttribute', 'soydata.SanitizedJs', 'soydata.SanitizedJsStrChars', 'soydata.SanitizedUri', 'soydata.VERY_UNSAFE'], ['goog.asserts', 'goog.dom.DomHelper', 'goog.format', 'goog.i18n.BidiFormatter', 'goog.i18n.bidi', 'goog.soy', 'goog.soy.data.SanitizedContentKind', 'goog.string', 'goog.string.StringBuffer']);
 goog.addDependency("../../../../view/context/context.js", ['view.context.Context'], []);
 goog.addDependency("../../../../view/context/searchcontext.js", ['view.context.SearchContext'], ['goog.dom.DomHelper', 'view.context.Context']);
-goog.addDependency("../../../../view/context/searchcontexttemplate.js", [], []);
