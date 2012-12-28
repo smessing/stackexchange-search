@@ -1,6 +1,7 @@
 goog.provide('control.Controller');
 
 goog.require('goog.net.XhrIo');
+goog.require('model.Question');
 goog.require('view.context.SearchContext');
 
 /**
@@ -129,8 +130,12 @@ control.Controller.prototype.handleSearchResults_ = function(type, e) {
 control.Controller.prototype.handleInTitleSearch_ = function(e) {
   var xhr = e.target;
   var obj = xhr.getResponseJson();
-  var questions = obj.items;
+  var rawQuestions = obj.items;
+  var questions = model.Question.buildQuestionsFromRaw(rawQuestions);
   console.log(obj);
+
   this.searchContext_.updateSearchInfo({'text': this.currentSearchText_,
-                                        'numResults': questions.length});
+                                        'numResults': rawQuestions.length});
+
+  // TODO(sam): update resultsContext with questions.
 };

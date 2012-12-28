@@ -42,3 +42,13 @@ model.Question = function(id, answerCount, isAnswered, creationDate,
   this.viewCount_ = viewCount;
 };
 goog.inherits(model.Question, model.Post);
+
+
+/**
+ * Build an array of questions based on an array of raw objects.
+ * @param {Array.<Object>} rawQuestions The raw question objects.
+ * @return {Array.<model.Question>} The constructed questions.
+ */
+model.Question.buildQuestionFromRaw = function(rawQuestions) {
+  return [];
+};
