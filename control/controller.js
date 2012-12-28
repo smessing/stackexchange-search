@@ -30,6 +30,50 @@ control.Controller = function() {
 
 
 /**
+ * Base URL for executing API requests.
+ * @type {string}
+ */
+control.Controller.BASE_URL = 'https://api.stackexchange.com/2.1/';
+
+
+/**
+ * URL fragment for specifying searches.
+ * @type {string}
+ */
+control.Controller.SEARCH_URL =
+  control.Controller.BASE_URL + 'search?order=desc&sort=activity&';
+
+
+/**
+ * End URL specifying StackOverflow website.
+ * @type {string}
+ */
+control.Controller.END_URL = '&site=stackoverflow';
+
+
+/**
+ * Supported search types.
+ * @enum {string}
+ */
+control.Controller.SEARCH_TYPE = {
+  IN_TITLE: 'intitle'
+};
+
+
+/**
+ * Build a search url.
+ * @param {control.Controller.SEARCH_TYPE} type The type of search to perform.
+ * @param {string} query The user-supplied query.
+ * @return {string} The resulting url to execute a search request.
+ */
+control.Controller.buildSearchUrl = function(type, query) {
+  var queryFragment = type + '=' + query;
+  return control.Controller.SEARCH_URL + queryFragment +
+    control.Controller.END_URL;
+};
+
+
+/**
  * The text used for the currently displayed search results.
  * @type {string}
  * @private
@@ -52,5 +96,41 @@ control.Controller.prototype.handleSearch = function(e) {
   }
   this.currentSearchText_ = searchText;
 
-  this.searchContext_.updateSearchInfo({'text': this.currentSearchText_});
+  // TODO(sam): make this more flexible.
+  var searchType = control.Controller.SEARCH_TYPE.IN_TITLE;
+  var searchUrl =
+    control.Controller.buildSearchUrl(searchType, this.currentSearchText_);
+
+  var callback = goog.bind(this.handleSearchResults_, this, searchType);
+  goog.net.XhrIo.send(searchUrl, callback);
+};
+
+
+/**
+ * Callback function for handling search results.
+ * @param {control.Controller.SEARCH_TYPE} type The type of search that was
+ *   executed.
+ * @param {*} e The callback results.
+ * @private
+ */
+control.Controller.prototype.handleSearchResults_ = function(type, e) {
+  switch(type) {
+    case control.Controller.SEARCH_TYPE.IN_TITLE:
+      this.handleInTitleSearch_(e);
+  }
+};
+
+
+/**
+ * Handles processing the results of an in-title search.
+ * @param {*} e The search results.
+ * @private
+ */
+control.Controller.prototype.handleInTitleSearch_ = function(e) {
+  var xhr = e.target;
+  var obj = xhr.getResponseJson();
+  var questions = obj.items;
+  console.log(obj);
+  this.searchContext_.updateSearchInfo({'text': this.currentSearchText_,
+                                        'numResults': questions.length});
 };

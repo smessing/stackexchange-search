@@ -47,6 +47,7 @@ view.context.SearchContext = function(appEl) {
    * @private
    */
   this.searchInfo_ = this.domHelper_.getElement('search-info');
+//  goog.dom.appendChild(this.searchEl_, this.searchInfo_);
 };
 goog.inherits(view.context.SearchContext, view.context.Context);
 
@@ -76,6 +77,7 @@ view.context.SearchContext.prototype.getSearchInfo = function() {
 view.context.SearchContext.prototype.updateSearchInfo = function(infoObj) {
   // Flush the search info.
   goog.dom.removeChildren(this.searchInfo_);
+
   var searchInfoList =
       this.domHelper_.createDom('ul', {'id': 'search-info-list'});
   goog.dom.appendChild(this.searchInfo_, searchInfoList);
@@ -87,4 +89,12 @@ view.context.SearchContext.prototype.updateSearchInfo = function(infoObj) {
   var text = 'query: ' + infoObj['text'];
   var searchText = this.domHelper_.createTextNode(text);
   goog.dom.appendChild(searchTextEl, searchText);
+
+  var numTextEl =
+    this.domHelper_.createDom('ul', {'id': 'search-info-num-results'});
+  goog.dom.appendChild(searchInfoList, numTextEl);
+
+  var numResults = 'number of results: ' + infoObj['numResults'];
+  var numText = this.domHelper_.createTextNode(numResults);
+  goog.dom.appendChild(numTextEl, numText);
 };
