@@ -16,10 +16,10 @@ goog.require('model.Post');
  * @param {number} score The score of this post.
  * @param {Array.<string>} tags The tags for this post.
  * @param {number} viewCount The view count for this question.
- * TODO(sam): add title!!!
+ * @param {string} title The title of this question.
  */
 model.Question = function(id, answerCount, isAnswered, creationDate,
-    lastActivityDate, link, author, score, tags, viewCount) {
+    lastActivityDate, link, author, score, tags, viewCount, title) {
   model.Post.call(
     this, id, creationDate, lastActivityDate, author, score, link);
   /**
@@ -42,6 +42,11 @@ model.Question = function(id, answerCount, isAnswered, creationDate,
    * @private
    */
   this.viewCount_ = viewCount;
+  /**
+   * @type {string}
+   * @private
+   */
+  this.title_ = title;
 };
 goog.inherits(model.Post, model.Question);
 
@@ -66,8 +71,10 @@ model.Question.buildQuestionsFromRaw = function(rawQuestions) {
     var score = rawQuestion['score'];
     var tags = rawQuestion['tags'];
     var viewCount = rawQuestion['view_count'];
+    var title = rawQuestion['title'];
     var question = new model.Question(questionId, answerCount, isAnswered,
-      creationDate, lastActivityDate, link, author, score, tags, viewCount);
+      creationDate, lastActivityDate, link, author, score, tags, viewCount,
+      title);
     builtQuestions[builtQuestions.length] = question;
   }
   return builtQuestions;

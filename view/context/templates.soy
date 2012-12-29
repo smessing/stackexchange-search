@@ -35,14 +35,23 @@
 {template .resultsContext}
   <ol id="results-list">
   {foreach $result in $results}
-    {if isFirst($result)}
-      <li class="results-list-item" id="results-list-current-item">
-      </li>
-    {else}
-      <li class="results-list-item">
-
-      </li>
-    {/if}
+    {call .resultsContextListItem}
+      {param isFirst: isFirst($result)/}
+      {param result: $result/}
+    {/call}
   {/foreach}
   </ol>
+{/template}
+
+
+/**
+ * A individual result in the results list.
+ * @param isFirst if this is the first item.
+ * TODO(sam): figure out type signature.
+ * @param result Result to display.
+ */
+{template .resultsContextListItem}
+  <li class="results-list-item" {if $isFirst}id="results-list-current-item"{/if}>
+    <a href="{$result.link_}">{$result.title_}</a>
+  </li>
 {/template}
