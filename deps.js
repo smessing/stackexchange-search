@@ -3,6 +3,7 @@ goog.addDependency("../../../../deps.js", [], []);
 goog.addDependency("../../../../main.js", ['main'], ['control.Controller']);
 goog.addDependency("../../../../build/resultscontext.soy.js", ['view.context.templates'], ['soy', 'soydata']);
 goog.addDependency("../../../../build/searchcontext.soy.js", ['view.context.templates'], ['soy', 'soydata']);
+goog.addDependency("../../../../build/templates.soy.js", ['view.context.templates'], ['soy', 'soydata']);
 goog.addDependency("../../../../control/controller.js", ['control.Controller'], ['goog.net.XhrIo', 'model.Question', 'view.context.ResultsContext', 'view.context.SearchContext']);
 goog.addDependency("../../alltests.js", [], []);
 goog.addDependency("base.js", [], []);

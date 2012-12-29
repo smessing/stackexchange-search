@@ -42,3 +42,21 @@ model.Post = function(id, creationDate, lastActivityDate, author, score, link) {
    */
   this.link_ = link;
 };
+
+
+/**
+ * Get the link for this post.
+ * @return {string|goog.uri} The uri for this post.
+ */
+model.Post.prototype.getLink = function() {
+  return this.link_;
+};
+
+
+/**
+ * Whether or not this post has a title.
+ * @return {boolean} Whether this post has a title.
+ */
+model.Post.prototype.hasTitle = function() {
+  return !!this.title_;
+};

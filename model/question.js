@@ -16,6 +16,7 @@ goog.require('model.Post');
  * @param {number} score The score of this post.
  * @param {Array.<string>} tags The tags for this post.
  * @param {number} viewCount The view count for this question.
+ * TODO(sam): add title!!!
  */
 model.Question = function(id, answerCount, isAnswered, creationDate,
     lastActivityDate, link, author, score, tags, viewCount) {
@@ -70,4 +71,13 @@ model.Question.buildQuestionsFromRaw = function(rawQuestions) {
     builtQuestions[builtQuestions.length] = question;
   }
   return builtQuestions;
+};
+
+
+/**
+ * Get this questions' title.
+ * @return {string} The title of this question.
+ */
+model.Question.getTitle = function() {
+  return this.title_;
 };

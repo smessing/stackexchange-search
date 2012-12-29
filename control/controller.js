@@ -144,5 +144,5 @@ control.Controller.prototype.handleInTitleSearch_ = function(e) {
 
   // TODO(sam): update resultsContext with questions.
   var questions = model.Question.buildQuestionsFromRaw(rawQuestions);
-  console.log(questions);
+  this.resultsContext_.updateNewResults(questions);
 };

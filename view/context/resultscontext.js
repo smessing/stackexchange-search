@@ -29,10 +29,19 @@ view.context.ResultsContext = function(appEl) {
    */
   this.resultsEl_ = this.domHelper_.createDom('div', {'class': 'context',
                                                      'id': 'results-context'});
-
   goog.dom.appendChild(appEl, this.resultsEl_);
-
-  // TODO(sam): figure out what to do for empty resultsContext...
-  this.resultsEl_.innerHTML = view.context.templates.resultsContext({});
 };
 goog.inherits(view.context.ResultsContext, view.context.Context);
+
+
+/**
+ * Update the results context with new results.
+ * @param {Array.<model.Post>} results The new results.
+ */
+view.context.ResultsContext.prototype.updateNewResults = function(results) {
+  // Flush the old results list.
+  goog.dom.removeChildren(this.resultsEl_);
+
+  var paramsObj = {'results': results};
+  this.resultsEl_.innerHTML = view.context.templates.resultsContext(paramsObj);
+};
