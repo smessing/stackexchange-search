@@ -1,5 +1,6 @@
 goog.provide('model.Question');
 
+goog.require('model.Post');
 
 /**
  * A StackOverflow Question.
@@ -41,7 +42,7 @@ model.Question = function(id, answerCount, isAnswered, creationDate,
    */
   this.viewCount_ = viewCount;
 };
-goog.inherits(model.Question, model.Post);
+goog.inherits(model.Post, model.Question);
 
 
 /**
@@ -49,6 +50,24 @@ goog.inherits(model.Question, model.Post);
  * @param {Array.<Object>} rawQuestions The raw question objects.
  * @return {Array.<model.Question>} The constructed questions.
  */
-model.Question.buildQuestionFromRaw = function(rawQuestions) {
-  return [];
+model.Question.buildQuestionsFromRaw = function(rawQuestions) {
+  var builtQuestions = [];
+  for (var i in rawQuestions) {
+    var rawQuestion = rawQuestions[i];
+    var questionId = rawQuestion['question_id'];
+    var answerCount = rawQuestion['answer_count'];
+    var isAnswered = rawQuestion['is_answered'];
+    var creationDate = rawQuestion['creation_date'];
+    var lastActivityDate = rawQuestion['last_activity_date'];
+    var link = rawQuestion['link'];
+    // TODO(sam): for metrics, building an author object might be useful...
+    var author = rawQuestion['owner']['display_name'];
+    var score = rawQuestion['score'];
+    var tags = rawQuestion['tags'];
+    var viewCount = rawQuestion['view_count'];
+    var question = new model.Question(questionId, answerCount, isAnswered,
+      creationDate, lastActivityDate, link, author, score, tags, viewCount);
+    builtQuestions[builtQuestions.length] = question;
+  }
+  return builtQuestions;
 };

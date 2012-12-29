@@ -130,12 +130,11 @@ control.Controller.prototype.handleInTitleSearch_ = function(e) {
   var xhr = e.target;
   var obj = xhr.getResponseJson();
   var rawQuestions = obj.items;
-  var questions = model.Question.buildQuestionsFromRaw(rawQuestions);
-  console.log(obj);
-
   // TODO(sam): infoObj should probably have a class of its own...
   this.searchContext_.updateSearchInfo({'text': this.currentSearchText_,
                                         'numResults': rawQuestions.length});
 
   // TODO(sam): update resultsContext with questions.
+  var questions = model.Question.buildQuestionsFromRaw(rawQuestions);
+  console.log(questions);
 };
