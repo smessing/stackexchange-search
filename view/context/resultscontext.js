@@ -13,7 +13,7 @@ goog.require('view.context.templates');
  * @constructor
  * @extends {view.context.Context}
  */
-view.context.ResultsConext = function(appEl) {
+view.context.ResultsContext = function(appEl) {
   /**
    * Dom helper for this search context.
    * @type {goog.dom.DomHelper}
@@ -29,7 +29,7 @@ view.context.ResultsConext = function(appEl) {
   this.resultsEl_ = this.domHelper_.createDom('div', {'class': 'context',
                                                      'id': 'results-context'});
 
-  goog.dom.appendChild(appEl, this.searchEl_);
+  goog.dom.appendChild(appEl, this.resultsEl_);
 
 //  this.searchEl_.innerHTML = view.context.templates.resultsContext();
 };

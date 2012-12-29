@@ -2,7 +2,7 @@
 goog.addDependency("../../../../deps.js", [], []);
 goog.addDependency("../../../../main.js", ['main'], ['control.Controller']);
 goog.addDependency("../../../../build/searchcontext.soy.js", ['view.context.templates'], ['soy', 'soydata']);
-goog.addDependency("../../../../control/controller.js", ['control.Controller'], ['goog.net.XhrIo', 'model.Question', 'view.context.SearchContext']);
+goog.addDependency("../../../../control/controller.js", ['control.Controller'], ['goog.net.XhrIo', 'model.Question', 'view.context.ResultsContext', 'view.context.SearchContext']);
 goog.addDependency("../../alltests.js", [], []);
 goog.addDependency("base.js", [], []);
 goog.addDependency("deps.js", [], []);
@@ -863,4 +863,5 @@ goog.addDependency("../../../soy/soyutils_usegoog.js", ['soy', 'soy.StringBuilde
 goog.addDependency("../../../../model/post.js", ['model.Post'], []);
 goog.addDependency("../../../../model/question.js", ['model.Question'], ['model.Post']);
 goog.addDependency("../../../../view/context/context.js", ['view.context.Context'], []);
+goog.addDependency("../../../../view/context/resultscontext.js", ['view.context.ResultsContext'], ['view.context.Context', 'view.context.templates']);
 goog.addDependency("../../../../view/context/searchcontext.js", ['view.context.SearchContext'], ['goog.dom.DomHelper', 'view.context.Context', 'view.context.templates']);
