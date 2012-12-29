@@ -2,6 +2,7 @@ goog.provide('control.Controller');
 
 goog.require('goog.net.XhrIo');
 goog.require('model.Question');
+goog.require('view.context.ResultsContext');
 goog.require('view.context.SearchContext');
 
 /**
@@ -18,11 +19,18 @@ control.Controller = function() {
 
   var appEl = goog.dom.getElement('app');
   /**
-   * The search-context view.
+   * The search context view.
    * @type {view.context.SearchContext}
    * @private
    */
   this.searchContext_ = new view.context.SearchContext(appEl);
+
+  /**
+   * The results context view.
+   * @type {view.context.ResultsContext}
+   * @private
+   */
+  this.resultsContext_ = new view.context.ResultsContext(appEl);
 
   var searchBar = this.searchContext_.getSearchBar();
   var handler = goog.bind(this.handleSearch, this);
