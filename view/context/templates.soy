@@ -25,3 +25,24 @@
 
   </div>
 {/template}
+
+/**
+ * Results context view.
+ * TODO(sam): figure out type signature.
+ * @param posts Posts to display.
+ */
+{template .resultsContext}
+  <ol id="results-list">
+  {foreach $post in $posts}
+    {if isFirst($post)}
+      <li class="results-list-item" id="results-list-current-item">
+
+      </li>
+    {else}
+      <li class="results-list-item">
+
+      </li>
+    {/if}
+  {/foreach}
+  </ol>
+{/template}

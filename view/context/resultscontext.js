@@ -3,6 +3,7 @@
  */
 goog.provide('view.context.ResultsContext');
 
+goog.require('goog.dom.DomHelper');
 goog.require('view.context.Context');
 goog.require('view.context.templates');
 
@@ -31,6 +32,7 @@ view.context.ResultsContext = function(appEl) {
 
   goog.dom.appendChild(appEl, this.resultsEl_);
 
-//  this.searchEl_.innerHTML = view.context.templates.resultsContext();
+  // TODO(sam): figure out what to do for empty resultsContext...
+  this.resultsEl_.innerHTML = view.context.templates.resultsContext({});
 };
 goog.inherits(view.context.ResultsContext, view.context.Context);
