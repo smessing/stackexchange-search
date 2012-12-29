@@ -36,10 +36,6 @@
   {foreach $result in $results}
     {if isFirst($result)}
       <li class="results-list-item" id="results-list-current-item">
-        {if $result.hasTitle()}
-          <a href="{print $result.getLink()}">{print $result.getTitle()}</a>
-        {/if}
-        {print $result.
       </li>
     {else}
       <li class="results-list-item">
