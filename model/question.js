@@ -78,6 +78,6 @@ model.Question.buildQuestionsFromRaw = function(rawQuestions) {
  * Get this questions' title.
  * @return {string} The title of this question.
  */
-model.Question.getTitle = function() {
+model.Question.prototype.getTitle = function() {
   return this.title_;
 };
