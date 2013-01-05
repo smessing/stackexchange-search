@@ -52,6 +52,6 @@
  */
 {template .resultsContextListItem}
   <li class="results-list-item" {if $isFirst}id="results-list-current-item"{/if}>
-    <a href="{$result.link_}">{$result.title_}</a>
+    <a href="{$result.link_}">{print $result.title_|noAutoescape}</a>
   </li>
 {/template}
