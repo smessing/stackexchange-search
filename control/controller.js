@@ -140,7 +140,7 @@ control.Controller.prototype.handleInTitleSearch_ = function(e) {
   console.log(obj);
   var rawQuestions = obj.items;
   // TODO(sam): handle the hasMore case.
-  var hasMore = object.has_more;
+  var hasMore = obj.has_more;
   // TODO(sam): infoObj should probably have a class of its own...
   this.searchContext_.updateSearchInfo({'text': this.currentSearchText_,
                                         'numResults': rawQuestions.length});
