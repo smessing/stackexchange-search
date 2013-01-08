@@ -1,5 +1,6 @@
 goog.provide('model.Question');
 
+goog.require('goog.net.XhrIo');
 goog.require('model.Post');
 
 /**
@@ -47,8 +48,31 @@ model.Question = function(id, answerCount, isAnswered, creationDate,
    * @private
    */
   this.title_ = title;
+
+  this.getQuestionHtml();
 };
 goog.inherits(model.Post, model.Question);
+
+
+/**
+ * Execute an XHR and grab the HTML for the question's text.
+ */
+model.Question.prototype.getQuestionHtml = function() {
+  var callback = goog.bind(this.handleQuestionHtml_, this);
+  goog.net.XhrIo.send(this.link, callback);
+};
+
+
+/**
+ * Handle grabbing the HTML for the question's text from the question's
+ * webpage.
+ * @param {*} e The callback results.
+ * @private
+ */
+model.Question.prototype.handleQuestionHtml_ = function(e) {
+  var xhr = e.target;
+  console.log(xhr);
+};
 
 
 /**

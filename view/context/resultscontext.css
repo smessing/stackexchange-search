@@ -1,5 +1,18 @@
 #results-context {
-  background: #0bb993;
+  background: #fcfcfa;
+  border-color: #e2e0d8;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
   color: white;
   text-align: left;
+}
+
+#results-list {
+  list-style-type: none;
+}
+
+.results-list-item a {
+  color: #0388A6;
+  text-decoration: none;
 }

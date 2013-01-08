@@ -1,13 +1,17 @@
 body {
+  background-color: #f0efe7;
+  font-family: adelle, Georgia, 'Times New Roman', serif;
+  font-weight: normal;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  text-rendering: optimizelegibility;
   width: 75%;
 }
 
 header {
-  color: #003e3c;
-  text-shadow: black 0.1em 0.1em;
+  color: #4e443c;
+  font-size: 24px;
 }
 
 input {
