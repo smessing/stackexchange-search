@@ -1,0 +1,2 @@
+1. Return answers, ranked according to,
+    #_votes + (5 * accepted?) + delta(query, question_for_answer)
