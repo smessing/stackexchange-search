@@ -145,7 +145,10 @@ control.Controller.prototype.handleInTitleSearch_ = function(e) {
   this.searchContext_.updateSearchInfo({'text': this.currentSearchText_,
                                         'numResults': rawQuestions.length});
 
-  // TODO(sam): update resultsContext with questions.
-  var questions = model.Question.buildQuestionsFromRaw(rawQuestions);
-  this.resultsContext_.updateNewResults(questions);
+  this.resultsContext_.clearOldResults();
+  for (var i in rawQuestions) {
+      var rawQuestion = rawQuestions[i];
+      var question = model.Question.buildQuestionFromRaw(rawQuestion);
+      this.resultsContext_.updateNewResult(question);
+  }
 };

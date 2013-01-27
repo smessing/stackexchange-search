@@ -84,24 +84,35 @@ model.Question.buildQuestionsFromRaw = function(rawQuestions) {
   var builtQuestions = [];
   for (var i in rawQuestions) {
     var rawQuestion = rawQuestions[i];
-    var questionId = rawQuestion['question_id'];
-    var answerCount = rawQuestion['answer_count'];
-    var isAnswered = rawQuestion['is_answered'];
-    var creationDate = rawQuestion['creation_date'];
-    var lastActivityDate = rawQuestion['last_activity_date'];
-    var link = rawQuestion['link'];
-    // TODO(sam): for metrics, building an author object might be useful...
-    var author = rawQuestion['owner']['display_name'];
-    var score = rawQuestion['score'];
-    var tags = rawQuestion['tags'];
-    var viewCount = rawQuestion['view_count'];
-    var title = rawQuestion['title'];
-    var question = new model.Question(questionId, answerCount, isAnswered,
-      creationDate, lastActivityDate, link, author, score, tags, viewCount,
-      title);
-    builtQuestions[builtQuestions.length] = question;
+    builtQuestions[builtQuestions.length] =
+      model.Question.buildQuestionFromRaw(rawQuestion);
   }
   return builtQuestions;
+};
+
+
+/**
+ * Build one question based on a raw object.
+ * @param {Object} rawQuestion The raw question object.
+ * @return {model.Question} The constructed question.
+ */
+model.Question.buildQuestionFromRaw = function(rawQuestion) {
+  var questionId = rawQuestion['question_id'];
+  var answerCount = rawQuestion['answer_count'];
+  var isAnswered = rawQuestion['is_answered'];
+  var creationDate = rawQuestion['creation_date'];
+  var lastActivityDate = rawQuestion['last_activity_date'];
+  var link = rawQuestion['link'];
+  // TODO(sam): for metrics, building an author object might be useful...
+  var author = rawQuestion['owner']['display_name'];
+  var score = rawQuestion['score'];
+  var tags = rawQuestion['tags'];
+  var viewCount = rawQuestion['view_count'];
+  var title = rawQuestion['title'];
+  var question = new model.Question(questionId, answerCount, isAnswered,
+    creationDate, lastActivityDate, link, author, score, tags, viewCount,
+    title);
+  return question;
 };
 
 
