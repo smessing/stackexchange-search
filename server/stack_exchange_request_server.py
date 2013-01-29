@@ -4,7 +4,10 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, world")
+        url = self.get_argument('url')
+        self.set_header('Access-Control-Allow-Origin', '*')
+        self.write(url)
+        self.finish()
 
 app = tornado.web.Application([
     (r'/', MainHandler),

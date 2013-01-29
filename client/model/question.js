@@ -1,5 +1,6 @@
 goog.provide('model.Question');
 
+goog.require('control.Routes');
 goog.require('goog.net.XhrIo');
 goog.require('model.Post');
 
@@ -59,7 +60,19 @@ goog.inherits(model.Post, model.Question);
  */
 model.Question.prototype.getQuestionHtml = function() {
   var callback = goog.bind(this.handleQuestionHtml_, this);
-  goog.net.XhrIo.send(this.link, callback);
+  var requestUrl = model.Question.buildRequestUrl(this.link_);
+  console.log(requestUrl);
+  goog.net.XhrIo.send(requestUrl, callback);
+};
+
+
+/**
+ * Builds the request to download the SO answer/post.
+ * @param {string} link The link of the page to download.
+ * @return {string} The proper request url to the proxy server.
+ */
+model.Question.buildRequestUrl = function(link) {
+    return control.Routes.PROXY_SERVER + '?url=' + link;
 };
 
 
